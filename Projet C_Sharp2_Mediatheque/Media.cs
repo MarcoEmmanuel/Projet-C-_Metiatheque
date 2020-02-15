@@ -16,9 +16,18 @@ namespace Projet_C_Sharp2_Mediatheque
         private double taille;
         private string lien;
 
-        public Media(string i,string n, string f, double t, string l)
+        public Media()
         {
-            this.Id = i;
+            
+            this.Nom = "";
+            this.Format = "";
+            this.Taille = 0;
+            this.Lien = "";
+        }
+
+        public Media(string n, string f, double t, string l)
+        {
+            
             this.Nom = n;
             this.Format = f; 
             this.Taille = t; 
@@ -27,7 +36,6 @@ namespace Projet_C_Sharp2_Mediatheque
 
         public string Id {
             get { return id; }
-            set { id = value; }
         }
 
         public string Nom
@@ -54,31 +62,29 @@ namespace Projet_C_Sharp2_Mediatheque
             set {lien = value; }
         }
 
-
+        
         public void Enregistrer(DataTable TableMedia)
         {
-
-
-            DataRow dr = new DataRow();
-            dr["Id"] = this.Id;
+            DataRow dr = TableMedia.NewRow();
             dr["Nom"] = this.Nom;
-            dr["Taille"] =this.Nom;
-            dr["Format"] = this.Nom;
-            dr["Lien"] = this.Nom;
+            dr["Taille"] = this.Taille;
+            dr["Format"] = this.Format;
+            dr["Lien"] = this.Lien;
            TableMedia.Rows.Add(dr);
  
         }
 
-        public void Trier(string id)
+        public string AfficheInfo()
         {
- 
+            string Afficher = "Lien :" + this.Lien + " " + " Nom :" + this.Nom + " " + "Taille:" + this.Taille + " " + "Format:" + this.Format;
+            return Afficher;
         }
 
-         public void TrierParNom( DataTable TableChoisie ,string nom)
+         public void TrierParNom( DataTable TableChoisie ,string noms)
         {
             foreach (DataRow dr in TableChoisie.Rows)
             {
-                if (dr["Nom"] == nom) {
+                if (dr["Nom"] == noms) {
                     for (int i = 0; i < TableChoisie.Columns.Count; i++)
                     {
                         Console.Write(dr[i]);

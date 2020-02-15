@@ -5,15 +5,52 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Media;
+using System.IO;
+using System.Windows.Forms;
+using System.ComponentModel;
+using System.Threading;
+
 
 namespace Projet_C_Sharp2_Mediatheque
 {
     public class Program
     {
-        Audio monAudio = new Audio();
-        Texte monTexte= new Texte();
+        
+        public static FileStream fichier;
+         static Thread monThread;
 
-        public static void creation_DataSet()
+       static  void SelectionFichier()
+        {
+            Form1 f1 = new Form1();
+            f1.ShowDialog();
+            OpenFileDialog op = new OpenFileDialog();
+            op.ShowDialog();
+
+            op.FileName = null;
+
+
+            if (op.FileName != null)
+            {
+                Media monMedia = new Media();
+                monMedia.Lien = op.FileName;
+                fichier = new FileStream(monMedia.Lien, FileMode.Open, FileAccess.Read);
+                monMedia.Taille = fichier.Length * 8;
+                monMedia.Nom = op.SafeFileName;
+                string extension = "";
+                for (int i = 0; i < monMedia.Lien.Length; i++)
+                {
+                    if (i == '.')
+                    {
+                        extension = extension + (i++);
+                    }
+                }
+                monMedia.Format = extension;
+            }
+
+        }
+       
+
+         static void creation_DataSet()
         {
             //Création du DataSet
             DataSet dsMedia = new DataSet();
@@ -73,10 +110,46 @@ namespace Projet_C_Sharp2_Mediatheque
             dtTexte.Columns.Add(colLienV);
         }
 
+        [STAThread]
         static void Main(string[] args)
         {
             
-           
+            Application.Run(new Form1());
+            //Media monMedia = new Media();
+            //Audio monAudio = new Audio();
+            //Texte monTexte = new Texte();
+            //Console.WriteLine("Bienvenue dans votre Mediatheque");
+            //Console.WriteLine("1: Pour selectionner un fichier");
+            //Console.WriteLine("2: Pour Faire un tri");
+
+            //int choix = Console.Read();
+
+            //switch (choix)
+            //{
+            //    case '1':
+                    
+            //        monThread = new Thread(SelectionFichier);
+            //        monThread.Start();
+            //        //Form1 f1 = new Form1();
+            //        // f1.ShowDialog();
+            //        monMedia.AfficheInfo();
+            //        Console.Read();
+            //        break;
+
+            //    case '2':
+
+            //        monMedia.AfficheInfo();
+            //        Console.Read();
+            //        Console.Read();
+            //        Console.Read();
+            //        break;
+
+            //}
+
+
+            //Console.Read();
+            
+          
         }
     }
 }
