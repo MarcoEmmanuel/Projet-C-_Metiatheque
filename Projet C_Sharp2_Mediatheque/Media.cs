@@ -62,17 +62,40 @@ namespace Projet_C_Sharp2_Mediatheque
             set {lien = value; }
         }
 
-        
+
         public void Enregistrer(DataTable TableMedia)
         {
-            DataRow dr = TableMedia.NewRow();
+             DataRow dr = TableMedia.NewRow();
             dr["Nom"] = this.Nom;
             dr["Taille"] = this.Taille;
             dr["Format"] = this.Format;
             dr["Lien"] = this.Lien;
-           TableMedia.Rows.Add(dr);
- 
+            TableMedia.Rows.Add(dr);
+            TableMedia.AcceptChanges();
+            
         }
+
+        public void copierFichier(string DossierFichier)
+        {
+            string fileName = this.Nom;
+            string sourcePath = this.Lien;
+            string targetPath = @"C:\Users\MARCO\Documents\Visual Studio 2012\Projects\Projet C_Sharp2_Mediatheque\Projet C_Sharp2_Mediatheque\bin\Debug\Mes_Medias\"+ DossierFichier;
+
+            // Use Path class to manipulate file and directory paths.
+            string sourceFile = System.IO.Path.Combine(sourcePath);
+            string destFile = System.IO.Path.Combine(targetPath, fileName);
+
+            // To copy a folder's contents to a new location:
+            // Create a new target folder. 
+            // If the directory already exists, this method does not create a new directory.
+            System.IO.Directory.CreateDirectory(targetPath);
+
+            // To copy a file to another location and 
+            // overwrite the destination file if it already exists.
+            System.IO.File.Copy(sourceFile, destFile, true);
+
+        }
+
 
         public string AfficheInfo()
         {
@@ -94,18 +117,20 @@ namespace Projet_C_Sharp2_Mediatheque
                 }
             }
         }
-         public void TrierParMedia(DataTable TableChoisie)
+         public string TrierParMedia(DataTable TableChoisie)
         {
+            string lignes="";
                 foreach (DataRow dr in TableChoisie.Rows)
             {
                 
                     for (int i = 0; i < TableChoisie.Columns.Count; i++)
                     {
-                        Console.Write(dr[i]);
-                        Console.Write("\n");
+                        lignes= dr[i].ToString();
                     }
                 
             }
+
+                return lignes;
         }
          public void Trier(DataTable TableChoisie, string taille)
         {

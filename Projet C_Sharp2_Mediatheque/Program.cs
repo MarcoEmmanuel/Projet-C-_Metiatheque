@@ -15,53 +15,17 @@ namespace Projet_C_Sharp2_Mediatheque
 {
     public class Program
     {
-        
-        public static FileStream fichier;
-         static Thread monThread;
-
-       static  void SelectionFichier()
-        {
-            Form1 f1 = new Form1();
-            f1.ShowDialog();
-            OpenFileDialog op = new OpenFileDialog();
-            op.ShowDialog();
-
-            op.FileName = null;
-
-
-            if (op.FileName != null)
-            {
-                Media monMedia = new Media();
-                monMedia.Lien = op.FileName;
-                fichier = new FileStream(monMedia.Lien, FileMode.Open, FileAccess.Read);
-                monMedia.Taille = fichier.Length * 8;
-                monMedia.Nom = op.SafeFileName;
-                string extension = "";
-                for (int i = 0; i < monMedia.Lien.Length; i++)
-                {
-                    if (i == '.')
-                    {
-                        extension = extension + (i++);
-                    }
-                }
-                monMedia.Format = extension;
-            }
-
-        }
        
-
-         static void creation_DataSet()
-        {
             //Création du DataSet
             DataSet dsMedia = new DataSet();
 
             //Création des DataTables
-            DataTable dtTexte = new DataTable("Texte");
-            DataTable dtAudio = new DataTable("Audio");
-            DataTable dtVideo = new DataTable("Video");
+          public static DataTable dtTexte = new DataTable("Texte");
+            public static DataTable dtAudio = new DataTable("Audio");
+          public static  DataTable dtVideo = new DataTable("Video");
 
 
-
+        public static void creercolonne(){
             //Ajout des Colonnes  dans DataTable dtTexte
             DataColumn colidT = new DataColumn("Id", Type.GetType("System.String"));
             DataColumn colnomT = new DataColumn("Nom", Type.GetType("System.String"));
@@ -74,8 +38,8 @@ namespace Projet_C_Sharp2_Mediatheque
             dtTexte.Columns.Add(colTailleT);
             dtTexte.Columns.Add("Lien", Type.GetType("System.String"));
             //Définition de la clé primaire
-            dtTexte.PrimaryKey = new DataColumn[] { colidT };
-
+            dtTexte.PrimaryKey = new DataColumn[] {colidT};
+            colidT.AutoIncrement = true;
 
 
             //Ajout des Colonnes  dans DataTable dtAudio
@@ -83,71 +47,44 @@ namespace Projet_C_Sharp2_Mediatheque
             DataColumn colnomA = new DataColumn("Nom", Type.GetType("System.String"));
             DataColumn colFormatA = new DataColumn("Format", Type.GetType("System.String"));
             DataColumn colTailleA = new DataColumn("Taille", Type.GetType("System.Double"));
-            DataColumn colLienA = new DataColumn("Lien", Type.GetType("System.Double"));
-            //Définition de la clé primaire
-            dtTexte.PrimaryKey = new DataColumn[] { colidA };
+            DataColumn colLienA = new DataColumn("Lien", Type.GetType("System.String"));
+            
             //Ajout des colonnes au DataTable
-            dtTexte.Columns.Add(colidA);
-            dtTexte.Columns.Add(colnomA);
-            dtTexte.Columns.Add(colFormatA);
-            dtTexte.Columns.Add(colTailleA);
-            dtTexte.Columns.Add(colLienA);
-
+            dtAudio.Columns.Add(colidA);
+            dtAudio.Columns.Add(colnomA);
+            dtAudio.Columns.Add(colFormatA);
+            dtAudio.Columns.Add(colTailleA);
+            dtAudio.Columns.Add(colLienA);
+            
+            //Définition de la clé primaire
+            dtAudio.PrimaryKey = new DataColumn[] { colidA };
+            colidA.AutoIncrement = true;
 
             //Ajout des Colonnes  dans DataTable dtVideo
             DataColumn colidV = new DataColumn("Id", Type.GetType("System.String"));
             DataColumn colnomV = new DataColumn("Nom", Type.GetType("System.String"));
             DataColumn colFormatV = new DataColumn("Format", Type.GetType("System.String"));
             DataColumn colTailleV = new DataColumn("Taille", Type.GetType("System.Double"));
-            DataColumn colLienV = new DataColumn("Lien", Type.GetType("System.Double"));
-            //Définition de la clé primaire
-            dtTexte.PrimaryKey = new DataColumn[] { colidV };
+            DataColumn colLienV = new DataColumn("Lien", Type.GetType("System.String"));
+            
             //Ajout des colonnes au DataTable
-            dtTexte.Columns.Add(colidV);
-            dtTexte.Columns.Add(colnomV);
-            dtTexte.Columns.Add(colFormatV);
-            dtTexte.Columns.Add(colTailleV);
-            dtTexte.Columns.Add(colLienV);
+            dtVideo.Columns.Add(colidV);
+            dtVideo.Columns.Add(colnomV);
+            dtVideo.Columns.Add(colFormatV);
+            dtVideo.Columns.Add(colTailleV);
+            dtVideo.Columns.Add(colLienV);
+            //Définition de la clé primaire
+            dtVideo.PrimaryKey = new DataColumn[] { colidV };
+            colidV.AutoIncrement = true;
+
         }
 
         [STAThread]
         static void Main(string[] args)
         {
-            
+            creercolonne();
             Application.Run(new Form1());
-            //Media monMedia = new Media();
-            //Audio monAudio = new Audio();
-            //Texte monTexte = new Texte();
-            //Console.WriteLine("Bienvenue dans votre Mediatheque");
-            //Console.WriteLine("1: Pour selectionner un fichier");
-            //Console.WriteLine("2: Pour Faire un tri");
-
-            //int choix = Console.Read();
-
-            //switch (choix)
-            //{
-            //    case '1':
-                    
-            //        monThread = new Thread(SelectionFichier);
-            //        monThread.Start();
-            //        //Form1 f1 = new Form1();
-            //        // f1.ShowDialog();
-            //        monMedia.AfficheInfo();
-            //        Console.Read();
-            //        break;
-
-            //    case '2':
-
-            //        monMedia.AfficheInfo();
-            //        Console.Read();
-            //        Console.Read();
-            //        Console.Read();
-            //        break;
-
-            //}
-
-
-            //Console.Read();
+            
             
           
         }

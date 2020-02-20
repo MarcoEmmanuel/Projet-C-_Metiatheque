@@ -17,7 +17,7 @@ namespace Projet_C_Sharp2_Mediatheque
     public partial class Form1 : Form
     {
         Thread monThread ;
-        Media monMedia = new Media();
+        Video maVideo = new Video();
         Audio monAudio = new Audio();
         Texte monTexte = new Texte();
         static FileStream fichier;
@@ -41,12 +41,15 @@ namespace Projet_C_Sharp2_Mediatheque
 
 
 
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox1.Text = "";
+            if (radioButton1.Checked)
+            {
+
+                    textBox1.Text = "";
             double taille;
             openFileDialog1.FileName = null;
             openFileDialog1.ShowDialog();
@@ -55,19 +58,20 @@ namespace Projet_C_Sharp2_Mediatheque
             {
                 this.textBox1.Text = openFileDialog1.FileName;
                 fichier = new FileStream(textBox1.Text, FileMode.Open, FileAccess.Read);
-                monMedia.Lien = textBox1.Text;
-                monMedia.Nom = openFileDialog1.SafeFileName;
+                monTexte.Lien = textBox1.Text;
+                monTexte.Nom = openFileDialog1.SafeFileName;
                 taille = fichier.Length;
                 string extension = "";
-                monMedia.Taille = taille;
+                monTexte.Taille = taille;
                 int pos = textBox1.Text.IndexOf('.') + 1;
                 extension = textBox1.Text.Substring(pos, 3);
 
-                monMedia.Format = extension;
-                label3.Text = monMedia.Nom;
-                label4.Text = monMedia.Format;
-                label5.Text = monMedia.Taille.ToString();
-                label6.Text = monMedia.Lien;
+                monTexte.Format = extension;
+                label3.Text = monTexte.Nom;
+                label4.Text = monTexte.Format;
+                label5.Text = monTexte.Taille.ToString();
+                label6.Text = monTexte.Lien;
+
 
                 if (taille > 1024)
                 {
@@ -94,6 +98,119 @@ namespace Projet_C_Sharp2_Mediatheque
                 }
 
             }
+                    
+            }
+
+            if (radioButton2.Checked)
+            {
+
+                textBox1.Text = "";
+                double taille;
+                openFileDialog1.FileName = null;
+                openFileDialog1.ShowDialog();
+
+                if (openFileDialog1.FileName != null)
+                {
+                    this.textBox1.Text = openFileDialog1.FileName;
+                    fichier = new FileStream(textBox1.Text, FileMode.Open, FileAccess.Read);
+                    monAudio.Lien = textBox1.Text;
+                    monAudio.Nom = openFileDialog1.SafeFileName;
+                    taille = fichier.Length;
+                    string extension = "";
+                    monAudio.Taille = taille;
+                    int pos = textBox1.Text.IndexOf('.') + 1;
+                    extension = textBox1.Text.Substring(pos, 3);
+
+                    maVideo.Format = extension;
+                    label3.Text = monAudio.Nom;
+                    label4.Text = monAudio.Format;
+                    label5.Text = monAudio.Taille.ToString();
+                    label6.Text = monAudio.Lien;
+
+
+                    if (taille > 1024)
+                    {
+
+                        taille = taille / 1024;
+                        this.label2.Text = "Taille originale du Fichier :" + taille + " " + "Ko";
+                    }
+
+                    else if (taille > Math.Pow(1024, 2))
+                    {
+                        taille = taille / Math.Pow(1024, 2);
+                        this.label2.Text = "Taille originale du Fichier :" + taille + " " + "Mo";
+                    }
+
+                    else if (taille > Math.Pow(1024, 3))
+                    {
+                        taille = taille / Math.Pow(1024, 3);
+                        this.label2.Text = "Taille originale du Fichier :" + taille + " " + "Go";
+                    }
+
+                    else
+                    {
+                        this.label2.Text = "Taille originale du Fichier :" + taille + " " + "Octets";
+                    }
+
+                }
+
+            }
+
+            if (radioButton3.Checked)
+            {
+
+                textBox1.Text = "";
+                double taille;
+                openFileDialog1.FileName = null;
+                openFileDialog1.ShowDialog();
+
+                if (openFileDialog1.FileName != null)
+                {
+                    this.textBox1.Text = openFileDialog1.FileName;
+                    fichier = new FileStream(textBox1.Text, FileMode.Open, FileAccess.Read);
+                    maVideo.Lien = textBox1.Text;
+                    maVideo.Nom = openFileDialog1.SafeFileName;
+                    taille = fichier.Length;
+                    string extension = "";
+                    maVideo.Taille = taille;
+                    int pos = textBox1.Text.IndexOf('.') + 1;
+                    extension = textBox1.Text.Substring(pos, 3);
+
+                    maVideo.Format = extension;
+                    label3.Text = maVideo.Nom;
+                    label4.Text = maVideo.Format;
+                    label5.Text = maVideo.Taille.ToString();
+                    label6.Text = maVideo.Lien;
+
+
+                    if (taille > 1024)
+                    {
+
+                        taille = taille / 1024;
+                        this.label2.Text = "Taille originale du Fichier :" + taille + " " + "Ko";
+                    }
+
+                    else if (taille > Math.Pow(1024, 2))
+                    {
+                        taille = taille / Math.Pow(1024, 2);
+                        this.label2.Text = "Taille originale du Fichier :" + taille + " " + "Mo";
+                    }
+
+                    else if (taille > Math.Pow(1024, 3))
+                    {
+                        taille = taille / Math.Pow(1024, 3);
+                        this.label2.Text = "Taille originale du Fichier :" + taille + " " + "Go";
+                    }
+
+                    else
+                    {
+                        this.label2.Text = "Taille originale du Fichier :" + taille + " " + "Octets";
+                    }
+
+                }
+
+            }
+               
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -113,34 +230,35 @@ namespace Projet_C_Sharp2_Mediatheque
         }
 
         private void button2_Click_1(object sender, EventArgs e)
+
         {
             
-            monMedia.Enregistrer(Program.dtTexte);
-            monThread = new Thread(copierFichier(Media monMedia));
+            if (radioButton1.Checked) {
+                monTexte.Enregistrer(Program.dtTexte);
+                monTexte.copierFichier("MesTextes");
+            }
+
+            if (radioButton2.Checked)
+            {
+                 monAudio.Enregistrer(Program.dtAudio);
+                 monAudio.copierFichier("MesAudios");
+            }
+
+            if (radioButton3.Checked)
+            {
+                 maVideo.Enregistrer(Program.dtVideo);
+                 maVideo.copierFichier("MesVideos");
+            }
+            //monMedia.Enregistrer(Program.dtTexte);
+            
+            //monThread = new Thread(copierFichier(monAudio));
             
         }
 
-        
-             public static void copierFichier(Media M)
-            {
-                string fileName = M.Nom;
-                string sourcePath = M.Lien;
-                string targetPath = @"C:\Users\MARCO\Documents\Visual Studio 2012\Projects\Projet C_Sharp2_Mediatheque\Projet C_Sharp2_Mediatheque\bin\Debug";
-
-                // Use Path class to manipulate file and directory paths.
-                string sourceFile = System.IO.Path.Combine(sourcePath, fileName);
-                string destFile = System.IO.Path.Combine(targetPath, fileName);
-
-                // To copy a folder's contents to a new location:
-                // Create a new target folder. 
-                // If the directory already exists, this method does not create a new directory.
-                System.IO.Directory.CreateDirectory(targetPath);
-
-                // To copy a file to another location and 
-                // overwrite the destination file if it already exists.
-                System.IO.File.Copy(sourceFile, destFile, true);
-
-            }
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            listBox1.Items.Add(monTexte.TrierParMedia(Program.dtTexte));
+        }
 
         }
     }
