@@ -9,3 +9,8 @@ C:\Users\MARCO\documents\visual studio 2012\Projects\Projet C_Sharp2_Mediatheque
 C:\Users\MARCO\Documents\GitHub\Projet-C-_Metiatheque\Projet C_Sharp2_Mediatheque\bin\Debug\Projet C_Sharp2_Mediatheque.exe.config
 C:\Users\MARCO\Documents\GitHub\Projet-C-_Metiatheque\Projet C_Sharp2_Mediatheque\obj\Debug\Projet C_Sharp2_Mediatheque.exe
 C:\Users\MARCO\Documents\GitHub\Projet-C-_Metiatheque\Projet C_Sharp2_Mediatheque\obj\Debug\Projet C_Sharp2_Mediatheque.pdb
+C:\Users\MARCO\Documents\GitHub\Projet-C-_Metiatheque\Projet C_Sharp2_Mediatheque\bin\Debug\Projet C_Sharp2_Mediatheque.exe
+C:\Users\MARCO\Documents\GitHub\Projet-C-_Metiatheque\Projet C_Sharp2_Mediatheque\bin\Debug\Projet C_Sharp2_Mediatheque.pdb
+C:\Users\MARCO\Documents\GitHub\Projet-C-_Metiatheque\Projet C_Sharp2_Mediatheque\obj\Debug\Projet C_Sharp2_Mediatheque.csprojResolveAssemblyReference.cache
+C:\Users\MARCO\Documents\GitHub\Projet-C-_Metiatheque\Projet C_Sharp2_Mediatheque\obj\Debug\Projet_C_Sharp2_Mediatheque.Form1.resources
+C:\Users\MARCO\Documents\GitHub\Projet-C-_Metiatheque\Projet C_Sharp2_Mediatheque\obj\Debug\Projet C_Sharp2_Mediatheque.csproj.GenerateResource.Cache

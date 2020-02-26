@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -43,6 +44,9 @@
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.datasetMediaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            ((System.ComponentModel.ISupportInitialize)(this.datasetMediaBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -96,7 +100,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 363);
+            this.label3.Location = new System.Drawing.Point(50, 339);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 19);
             this.label3.TabIndex = 7;
@@ -105,7 +109,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(24, 422);
+            this.label4.Location = new System.Drawing.Point(51, 382);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 19);
             this.label4.TabIndex = 8;
@@ -114,7 +118,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(390, 363);
+            this.label5.Location = new System.Drawing.Point(50, 422);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 19);
             this.label5.TabIndex = 9;
@@ -123,7 +127,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(390, 422);
+            this.label6.Location = new System.Drawing.Point(50, 471);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 19);
             this.label6.TabIndex = 10;
@@ -132,7 +136,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Comic Sans MS", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(8, 286);
+            this.button2.Location = new System.Drawing.Point(12, 273);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(545, 45);
             this.button2.TabIndex = 11;
@@ -179,7 +183,7 @@
             this.listBox1.ItemHeight = 18;
             this.listBox1.Location = new System.Drawing.Point(8, 527);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(534, 130);
+            this.listBox1.Size = new System.Drawing.Size(549, 130);
             this.listBox1.TabIndex = 15;
             // 
             // button3
@@ -192,11 +196,15 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
+            // datasetMediaBindingSource
+            // 
+            this.datasetMediaBindingSource.DataSource = typeof(Projet_C_Sharp2_Mediatheque.datasetMedia);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(556, 673);
+            this.ClientSize = new System.Drawing.Size(570, 673);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.radioButton3);
@@ -215,6 +223,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.datasetMediaBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,6 +246,8 @@
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.BindingSource datasetMediaBindingSource;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 

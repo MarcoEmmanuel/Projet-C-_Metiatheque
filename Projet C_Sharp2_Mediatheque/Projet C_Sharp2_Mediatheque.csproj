@@ -70,6 +70,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\datasetMedia.datasource" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">

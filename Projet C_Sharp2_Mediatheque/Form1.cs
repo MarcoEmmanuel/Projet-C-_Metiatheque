@@ -29,6 +29,14 @@ namespace Projet_C_Sharp2_Mediatheque
             InitializeComponent();
         }
 
+        public static string extraireExtension(string lien)
+        {
+            string extension = "";
+            int pos = lien.IndexOf('.') + 1;
+            extension = lien.Substring(pos, 3);
+            return extension;
+        }
+
         private void label3_Click(object sender, EventArgs e)
         {
 
@@ -37,11 +45,7 @@ namespace Projet_C_Sharp2_Mediatheque
         private void button2_Click(object sender, EventArgs e)
         {
             fichier = new FileStream(textBox1.Text, FileMode.Open, FileAccess.Read);
-
-
-
-
-            
+    
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -61,12 +65,11 @@ namespace Projet_C_Sharp2_Mediatheque
                 monTexte.Lien = textBox1.Text;
                 monTexte.Nom = openFileDialog1.SafeFileName;
                 taille = fichier.Length;
-                string extension = "";
+                
                 monTexte.Taille = taille;
-                int pos = textBox1.Text.IndexOf('.') + 1;
-                extension = textBox1.Text.Substring(pos, 3);
+                
 
-                monTexte.Format = extension;
+                monTexte.Format = extraireExtension(textBox1.Text);
                 label3.Text = monTexte.Nom;
                 label4.Text = monTexte.Format;
                 label5.Text = monTexte.Taille.ToString();
@@ -226,7 +229,15 @@ namespace Projet_C_Sharp2_Mediatheque
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //string[] listefichier;
 
+            //datasetMedia.chargementDataSet(out listefichier);
+
+
+            //foreach (string item in listefichier)
+            //{
+            //    listBox1.Items.Add(item);
+            //}
         }
 
         private void button2_Click_1(object sender, EventArgs e)
@@ -234,19 +245,19 @@ namespace Projet_C_Sharp2_Mediatheque
         {
             
             if (radioButton1.Checked) {
-                monTexte.Enregistrer(Program.dtTexte);
+                monTexte.Enregistrer(datasetMedia.dtTexte);
                 monTexte.copierFichier("MesTextes");
             }
 
             if (radioButton2.Checked)
             {
-                 monAudio.Enregistrer(Program.dtAudio);
+                monAudio.Enregistrer(datasetMedia.dtAudio);
                  monAudio.copierFichier("MesAudios");
             }
 
             if (radioButton3.Checked)
             {
-                 maVideo.Enregistrer(Program.dtVideo);
+                maVideo.Enregistrer(datasetMedia.dtVideo);
                  maVideo.copierFichier("MesVideos");
             }
             //monMedia.Enregistrer(Program.dtTexte);
@@ -257,7 +268,7 @@ namespace Projet_C_Sharp2_Mediatheque
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            listBox1.Items.Add(monTexte.TrierParMedia(Program.dtTexte));
+            listBox1.Items.Add(monTexte.TrierParMedia(datasetMedia.dtTexte));
         }
 
         }
